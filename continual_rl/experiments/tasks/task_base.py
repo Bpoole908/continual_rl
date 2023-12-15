@@ -67,6 +67,8 @@ class TaskBase(ABC):
             summary_writer.add_video(tag, value, global_step=timestep)
         elif type == "scalar":
             summary_writer.add_scalar(tag, value, global_step=timestep)
+        elif type == "histogram":
+            summary_writer.add_histogram(tag, value, global_step=timestep)
         elif type == "image":
             summary_writer.add_image(tag, value, global_step=timestep)
 
