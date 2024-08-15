@@ -73,7 +73,7 @@ def make_minihack(
         savedir=savedir,
         **kwargs,
     )  # each env specifies its own self._max_episode_steps
-    env = MiniHackMakeVecSafeWrapper(env)
+    # env = MiniHackMakeVecSafeWrapper(env)
     env = MiniHackObsWrapper(env)
     return env
 
