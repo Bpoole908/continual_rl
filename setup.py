@@ -13,7 +13,7 @@ setup(
                       'numpy',
                       'tensorboard',
                       'torch-ac',
-                      'gym[atari]<=0.25.2',
+                      'gym[atari,accept-rom-license]<=0.25.2',
                       'moviepy',
                       'dotmap',
                       'psutil',
