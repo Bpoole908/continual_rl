@@ -24,14 +24,15 @@ def make_atari(env_id, max_episode_steps=None, full_action_space=False):
     return env
 
 
-def wrap_deepmind(env, episode_life=True, clip_rewards=True, frame_stack=False, scale=False):
+def wrap_deepmind(env, episode_life=True, wrap=True, clip_rewards=True, frame_stack=False, scale=False):
     """Configure environment for DeepMind-style Atari.
     """
     if episode_life:
         env = EpisodicLifeEnv(env)
     if 'FIRE' in env.unwrapped.get_action_meanings():
         env = FireResetEnv(env)
-    env = WarpFrame(env)
+    if wrap:
+        env = WarpFrame(env)
     if scale:
         env = ScaledFloatFrame(env)
     if clip_rewards:
@@ -52,8 +53,9 @@ def get_single_atari_task(task_id, action_space_id, env_name, num_timesteps, max
         env_spec=lambda: wrap_deepmind(
             make_atari(env_name, max_episode_steps=max_episode_steps, full_action_space=full_action_space),
             clip_rewards=False,  # If policies need to clip rewards, they should handle it themselves
-            frame_stack=False,  # Handled separately
+            frame_stack=False,  # Added by image task
             scale=False,
+            wrap=False, # Added by image task
         ),
         num_timesteps=num_timesteps,
         time_batch_size=4,
