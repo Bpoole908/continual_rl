@@ -19,7 +19,7 @@ class TestPPOPolicy(object):
         experiment = Experiment(
             tasks=[
                 ImageTask(task_id="end_to_end_batch", action_space_id=0,
-                          env_spec='BreakoutDeterministic-v4',
+                          env_spec='ale_py:BreakoutDeterministic-v4',
                           num_timesteps=10, time_batch_size=4, eval_mode=False,
                           image_size=[84, 84], grayscale=True)])
         config = PPOPolicyConfig()

@@ -1,7 +1,7 @@
 from continual_rl.experiments.tasks.preprocessor_base import PreprocessorBase
 from gymnasium.spaces.box import Box
 import torch
-
+import numpy as np
 
 class MockPreprocessor(PreprocessorBase):
     def __init__(self):
@@ -9,7 +9,7 @@ class MockPreprocessor(PreprocessorBase):
         super().__init__(observation_space)
 
     def preprocess(self, observation):
-        return torch.Tensor(observation)
+        return torch.Tensor(np.array(observation))
 
     def render_episode(self, episode_observations):
         """

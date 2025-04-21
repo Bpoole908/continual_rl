@@ -1,3 +1,8 @@
+import gymnasium as gym
+import ale_py
+
+gym.register_envs(ale_py) 
+
 from continual_rl.experiments.experiment import Experiment
 from continual_rl.experiments.tasks.make_atari_task import get_single_atari_task
 from continual_rl.experiments.tasks.make_procgen_task import get_single_procgen_task
