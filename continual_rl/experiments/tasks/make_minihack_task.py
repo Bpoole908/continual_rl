@@ -28,11 +28,11 @@ class MiniHackMakeVecSafeWrapper(gym.Wrapper):
         os.chdir(self.basedir)
         return x
 
-    def reset(self):
+    def reset(self, **kwargs):
         os.chdir(self.env.env._vardir)
-        x = self.env.reset()
+        x, info = self.env.reset(**kwargs)
         os.chdir(self.basedir)
-        return x
+        return x, info
 
     def close(self):
         os.chdir(self.env.env._vardir)

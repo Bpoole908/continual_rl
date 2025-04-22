@@ -74,14 +74,14 @@ class FireResetEnv(gym.Wrapper):
         assert len(env.unwrapped.get_action_meanings()) >= 3
 
     def reset(self, **kwargs):
-        self.env.reset(**kwargs)
+        _, info = self.env.reset(**kwargs)
         obs, _, terminated, truncated, _ = self.env.step(1)
         if terminated or truncated:
-            self.env.reset(**kwargs)
+             _, info = self.env.reset(**kwargs)
         obs, _, terminated, truncated, _ = self.env.step(2)
         if terminated or truncated:
-            self.env.reset(**kwargs)
-        return obs, {}
+             _, info = self.env.reset(**kwargs)
+        return obs, info
 
 
 class EpisodicLifeEnv(gym.Wrapper):
